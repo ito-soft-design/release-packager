@@ -10,8 +10,8 @@ module ReleasePackager
       'extra_files' => []
     }.freeze
 
-    attr_accessor :output_dir, :require_clean_git
-    attr_reader :archive_prefix, :date_format,
+    attr_accessor :output_dir, :require_clean_git, :archive_prefix
+    attr_reader :date_format,
                 :main_branches,
                 :keep, :exclude, :extra_files
 

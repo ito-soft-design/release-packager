@@ -59,14 +59,11 @@ module ReleasePackager
       end
 
       namespace @name do
-        desc "Create release archive for preview (skips clean check, outputs to PREVIEW_ folder)"
+        desc "Create release archive for preview (skips clean check, adds PREVIEW_ prefix)"
         task :try do
           config = load_config
           config.require_clean_git = false
-          config.output_dir = File.join(
-            File.dirname(config.output_dir),
-            "PREVIEW_#{File.basename(config.output_dir)}"
-          )
+          config.archive_prefix = "PREVIEW_#{config.archive_prefix}"
           packager = Packager.new(config: config, project_root: @project_root)
           packager.run
         end
