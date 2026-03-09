@@ -10,8 +10,9 @@ module ReleasePackager
       'extra_files' => []
     }.freeze
 
-    attr_reader :output_dir, :archive_prefix, :date_format,
-                :main_branches, :require_clean_git,
+    attr_accessor :output_dir, :require_clean_git
+    attr_reader :archive_prefix, :date_format,
+                :main_branches,
                 :keep, :exclude, :extra_files
 
     def initialize(config_path, project_root: Dir.pwd)
