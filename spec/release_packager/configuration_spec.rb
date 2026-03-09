@@ -75,11 +75,11 @@ RSpec.describe ReleasePackager::Configuration do
       }.to raise_error(ReleasePackager::ConfigurationError, /archive_prefix is required/)
     end
 
-    it 'raises error when keep is empty' do
+    it 'warns when keep is empty' do
       create_config_file(@tmpdir, { 'keep' => [] })
       expect {
         described_class.load('release.yml', project_root: @tmpdir)
-      }.to raise_error(ReleasePackager::ConfigurationError, /keep must contain at least one item/)
+      }.to output(/Warning: keep list is empty/).to_stderr
     end
 
     it 'raises error when extra_files entry is missing source' do

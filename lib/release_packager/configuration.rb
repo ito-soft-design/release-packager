@@ -55,8 +55,9 @@ module ReleasePackager
         raise ConfigurationError, "archive_prefix is required"
       end
 
-      if @keep.nil? || !@keep.is_a?(Array) || @keep.empty?
-        raise ConfigurationError, "keep must contain at least one item"
+      @keep = [] if @keep.nil? || !@keep.is_a?(Array)
+      if @keep.empty?
+        warn "Warning: keep list is empty. Only extra_files will be included in the archive."
       end
 
       @extra_files.each do |entry|
